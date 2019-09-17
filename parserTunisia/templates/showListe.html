@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--  produit lool liste des élements mich produits barka tout de dépend de categorie et tab -->
+<!--  affichage de la liste d'éléments  selon keyword -->
+{% extends "admin.html" %}
+{% load app_tags %}
+{% block content %}
+    {% if  not produit and tab == "show" %}
+        <p>Ooups!! Pas de produits</p>
+    {% endif %}
+    {% if  not produit and tab == "showHotels" %}
+        <p>Ooups!! Pas d'hotels</p>
+    {% endif %}
+    {% if    not produit and tab == "showRestaurents" %}
+        <p>Ooups!! Pas de Restaurants</p>
+    {% endif %}
+    {% if not produit and  tab == "showActivities" %}
+        <p>Ooups!! Pas d'attraction</p>
+    {% endif %}
+            {% if  maison %}
+                <div class="card pd-10 pd-sm-10 mg-t-10">
+                    <h6 class="card-body-title">Les Maisons disponibles: </h6>
+                    <p class="mg-b-20 mg-sm-b-30">
+                        La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                        existent en ce moment là dans les sites officiels des vendeurs.
+                    </p>
+                    <div class="row">
+                        <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                        {% for o in maison %}
+                            <div class="col-sm">
+                                <a style="color: white"
+                                   href="{% url  'showDetails1' categorie tab 'all' 'maison' o.name '#' %}">
+                                    <div class="card rounded-0" style="margin-bottom: 8%">
+                                        <div class="card-header card-header-default bg-teal">
+                                            <a style="color: white"
+                                               href="{% url  'showDetails1' categorie tab 'all' 'maison' o.name '#' %}">{{ o.name }}
+                                            </a>
+                                        </div>
+                                        <div class="card-body bg-gray-200">
+                                            <!--  l'image principlae -->
+                                            {% if  o.imageP is not None %}
+                                                <img src="{{ o.imageP }}" width="250px" height="150px">
+                                            {% else %}
+                                                <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                     width="250px" height="150px">
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-footer bg-gray-400">
+                                            {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                            {{ o.place }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+            {% endif %}
+
+
+            {% if  appartement %}
+                <div class="card pd-10 pd-sm-10 mg-t-10">
+                    <h6 class="card-body-title">Les appartements disponibles: </h6>
+                    <p class="mg-b-20 mg-sm-b-30">
+                        La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                        existent en ce moment là dans les sites officiels des vendeurs.
+                    </p>
+                    <div class="row">
+                        <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                        {% for o in appartement %}
+                            <div class="col-sm">
+                                <a style="color: white"
+                                   href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">
+                                    <div class="card rounded-0" style="margin-bottom: 8%">
+                                        <div class="card-header card-header-default bg-teal">
+                                            <a style="color: white"
+                                               href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">{{ o.name }}</a>
+                                        </div>
+                                        <div class="card-body bg-gray-200">
+                                            <!--  l'image principlae -->
+                                            {% if  o.imageP is not None %}
+                                                <img src="{{ o.imageP }}" width="250px" height="150px">
+                                            {% else %}
+                                                <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                     width="250px" height="150px">
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-footer bg-gray-400">
+                                            {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                            {{ o.place }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+            {% endif %}
+
+
+            {% if  terrain %}
+                <div class="card pd-10 pd-sm-10 mg-t-10">
+                    <h6 class="card-body-title">Les terrains disponibles: </h6>
+                    <p class="mg-b-20 mg-sm-b-30">
+                        La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                        existent en ce moment là dans les sites officiels des vendeurs.
+                    </p>
+                    <div class="row">
+                        <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                        {% for o in terrains %}
+                            <div class="col-sm">
+                                <a style="color: white"
+                                   href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">
+                                    <div class="card rounded-0" style="margin-bottom: 8%">
+                                        <div class="card-header card-header-default bg-teal">
+                                            <a style="color: white"
+                                               href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">{{ o.name }}</a>
+                                        </div>
+                                        <div class="card-body bg-gray-200">
+                                            <!--  l'image principlae -->
+                                            {% if  o.imageP is not None %}
+                                                <img src="{{ o.imageP }}" width="250px" height="150px">
+                                            {% else %}
+                                                <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                     width="250px" height="150px">
+                                            {% endif %}
+                                        </div>
+                                        <div class="card-footer bg-gray-400">
+                                            {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                            {{ o.place }}
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                </div>
+            {% endif %}
+
+
+    <!--  affichage des produits et d'oofres touristiques -->
+    {% if produit %}
+        <div class="card pd-10 pd-sm-10 mg-t-10">
+        <h6 class="card-body-title">Les résultats: </h6>
+        <p class="mg-b-20 mg-sm-b-30">
+            La mise à jour des annonces est automatique, soyez sur que les articles extractés
+            existent en ce moment là dans les sites officiels des vendeurs de service.
+        </p>
+        <div class="row">
+    {% for o in produit %}
+        <div class="col-lg-4" style="color: white">
+        <div class="card rounded-0" style="margin-bottom: 8%">
+        <div class="card-header card-header-default bg-teal">
+            <a href="{% url  'showDetails' categorie tab keyword  o.name '#' %}">{{ o.name | étoile }}</a>
+        </div>
+        <div class="card-body bg-gray-0">
+            {% if tab == "show" %}
+            <div class="col-auto">
+                <img src="{{ o.imageP }}" width="100px" height="100px">
+            </div>
+            {% endif %}
+            {% if tab == "showHotels" or tab == "showRestaurents" or tab == "showActivities" %}
+           <div class="col-auto">
+                <img src="{{ o.imageP }}" width="300px" height="200px">
+           </div>
+            {% endif %}
+        </div>
+            <div class="card-footer" style="background-color: white">
+                <table class="table table-hover table-bordered mg-b-0" style="margin-bottom: 0px">
+                    <thead>
+                    <tr>
+            {% if tab == "show" %}
+                <td>
+                    <i class="icon ion-pinpoint"></i> {{ o.price }} TND
+                </td>
+                <td>
+                    <i class="icon ion-pie-graph"></i> {{ o.promotion }}%
+                </td>
+                <td style="color: darkgoldenrod">
+                    <i class="icon ion-star"></i> {{ o.note }}
+                </td>
+            {% endif %}
+            {% if tab == "showHotels" %}
+                <td>
+                    <i class="icon ion-pinpoint"></i> {{ o.place | to | to1 }}
+                </td>
+                <td>
+                    <i class="icon ion-pie-graph"></i> {{ o.mention | to }}
+                </td>
+                <td style="color: darkgoldenrod">
+                    <i class="icon ion-star"></i> {{ o.note }}
+                </td>
+            {% endif %}
+            {% if tab == "showRestaurents" %}
+                <td>
+                    <i class="icon ion-pinpoint"></i> {{ o.adresse | to | to1 }}
+                </td>
+                <td>
+                    <i class="icon ion-pie-graph"></i> {{ o.téléphone }}
+                </td>
+                <td style="color: darkgoldenrod">
+                    <i class="icon ion-star"></i> {{ o.note }}
+                </td>
+            {% endif %}
+        {% if tab == "showActivities" %}
+            <td>
+                <i class="icon ion-pinpoint"></i> {{ o.place | to | to1 }}
+            </td>
+            <td>
+                <i class="icon ion-pie-graph"></i> {{ o.type | to | to1}}
+            </td>
+            <td style="color: darkgoldenrod">
+                <i class="icon ion-star"></i> {{ o.note }}
+            </td>
+        {% endif %}
+                    </tr></thead></table>
+        </div>
+        </div>
+        </div>
+    {% endfor %}
+    </div>
+    </div>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

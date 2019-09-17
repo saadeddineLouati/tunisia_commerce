@@ -1,0 +1,2147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load app_tags %}
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@themepixels">
+    <meta name="twitter:creator" content="@themepixels">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amanda">
+    <meta name="twitter:description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="twitter:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+
+    <!-- Facebook -->
+    <meta property="og:url" content="http://themepixels.me/amanda">
+    <meta property="og:title" content="Bracket">
+    <meta property="og:description" content="Premium Quality and Responsive UI for Dashboard.">
+
+    <meta property="og:image" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:secure_url" content="http://themepixels.me/amanda/img/amanda-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="600">
+
+    <!-- Meta -->
+    <meta name="description" content="Premium Quality and Responsive UI for Dashboard.">
+    <meta name="author" content="ThemePixels">
+
+
+    <title>Amanda Responsive Bootstrap 4 Admin Template</title>
+
+    <!-- vendor css -->
+    <link href="{% static '/lib/font-awesome/css/font-awesome.css" rel="stylesheet' %}">
+    <link href="{% static '/lib/Ionicons/css/ionicons.css' %}" rel="stylesheet">
+    <link href="{% static '/lib/perfect-scrollbar/css/perfect-scrollbar.css' %}" rel="stylesheet">
+    <link href="{% static '/lib/jquery-toggles/toggles-full.css' %}" rel="stylesheet">
+    <link href="{% static '/lib/highlightjs/github.css' %}" rel="stylesheet">
+    <link href="{% static '/lib/jquery.steps/jquery.steps.css' %}" rel="stylesheet">
+
+    <!-- Amanda CSS -->
+    <link rel="stylesheet" href="{% static '/css/amanda.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+
+    <script>
+
+        var count = 0;
+        var count1 = 0
+
+
+        function plus() {
+
+            x = document.getElementById("count").value
+            y = document.getElementById("count1").value
+
+            if (parseInt(x) < parseInt(y)) {
+                count = count + 50;
+                document.getElementById("count").value = count;
+            }
+        }
+
+        function minus() {
+            if (count >= 50) {
+                count = count - 50;
+                document.getElementById("count").value = count;
+            }
+        }
+
+        function plus1() {
+            count1 = count1 + 50;
+
+            document.getElementById("count1").value = count1;
+        }
+
+        function minus1() {
+            x = document.getElementById("count").value
+            y = document.getElementById("count1").value
+            if (count1 > 50 && parseInt(y) > parseInt(x)) {
+                count1 = count1 - 50;
+                document.getElementById("count1").value = count1;
+            }
+        }
+    </script>
+    <script>
+        function verif(champ) {
+            var categorie = document.getElementById(champ).value;
+            var x = 0;
+            console.log(categorie)
+            for (var i = 0; i < categorie.length; i++) {
+
+                if ((categorie.charCodeAt(i) < 65 && categorie.charCodeAt(i) != 45) || (categorie.charCodeAt(i) > 90 && categorie.charCodeAt(i) < 96) || (categorie.charCodeAt(i) > 122 && categorie.charCodeAt(i) < 191)) {
+                    x++
+
+                }
+            }
+            if (x > 0) {
+
+                alert('svp entrer  des caractéres alphabtiques')
+                document.getElementById(champ).value = "";
+            }
+
+        }
+
+        function verifNum(champ) {
+            var categorie = document.getElementById(champ).value;
+            var x = 0;
+            console.log(categorie)
+            for (var i = 0; i < categorie.length; i++) {
+
+                if (categorie.charCodeAt(i) < 49 || categorie.charCodeAt(i) > 57) {
+                    x++
+
+                }
+            }
+            if (x > 0) {
+
+                alert('svp entrer  des caractéres numériques')
+                document.getElementById(champ).value = "";
+            }
+
+        }
+
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="am-header">
+    <div class="am-header-left">
+        <a id="naviconLeft" href="" class="am-navicon d-none d-lg-flex"><i class="icon ion-navicon-round"></i></a>
+        <a id="naviconLeftMobile" href="" class="am-navicon d-lg-none"><i class="icon ion-navicon-round"></i></a>
+    </div><!-- am-header-left -->
+    <div class="am-header-right">
+
+    </div><!-- am-header-right -->
+</div><!-- am-header -->
+
+<div class="am-sideleft">
+    <div class="tab-content">
+        <div id="mainMenu" class="tab-pane active" style="margin-left: 20px">
+            {% if tab == "manage" %}
+                <ul class="nav am-sideleft-menu">
+                    <li class="nav-item">
+                        <a class="nav-link active">
+                            <i class="icon ion-ios-home-outline"></i>
+                            <span>Menu</span>
+                        </a>
+                    </li><!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="/adminProfile/manageMagasin/manage/welcome" class="nav-link">
+                            <i class="icon ion-ios-briefcase-outline"></i>
+                            <span>Magasin en ligne</span>
+                        </a>
+                    </li><!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="/adminProfile/manageTravel/manage/welcome" class="nav-link">
+                            <i class="icon ion-ios-briefcase-outline"></i>
+                            <span>Site touristique</span>
+                        </a>
+                    </li><!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="/adminProfile/manageDeals/manage/welcome" class="nav-link">
+                            <i class="icon ion-ios-briefcase-outline"></i>
+                            <span>Annonces immobilières</span>
+                        </a>
+                    </li><!-- nav-item -->
+                </ul>
+            {% endif %}
+            {% if  tab == "show" or tab == "showHotels" or tab == "showRestaurents"  or tab == "showRent" or tab == "showSales" or tab == "showActivities" %}
+                {% include 'keywords.html' %}
+            {% endif %}
+            <!-- menu à gauche  ki tbda fil tabulation tableau de bord yaffichlikk  les catégories  ,les villes bich tnjém tconsulti il tableau de bord mét7hom-->
+            {% if showKeywordbord == "oui" and tab == "tableaubord" %}
+                <ul class="nav am-side left-menu">
+                    {% for o in categories %}
+                        <li class="nav-item">
+                            <a class="nav-link"
+                               href="{% url 'showBord' categorie 'tableaubord' o 'oui' %}"> {{ o }}</a>
+                        </li>
+                        <br>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        </div>
+    </div><!-- tab-content -->
+</div>
+</div><!-- am-sideleft -->
+<div class="am-mainpanel">
+    <div class="am-pagetitle">
+        <h5 class="am-title"><img src="{% static 'logo.png' %}" class="wd-32" alt="" style="width: 35%"></h5>
+    </div><!-- am-pagetitle -->
+    <div class="am-pagebody">
+
+        <!-- menu à gauche -->
+        <!-- partie droite  de la page  (contenu)-->
+        <div>
+            <div class="pd-0 mg-t-0 bg-gray-300">
+                <ul class="nav nav-gray-600 flex-column flex-sm-row" role="tablist">
+                    <!--  tabulation de gestion  -->
+                    {% if categorie == "manageMagasin" and tab != 'manage' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminProfile/manageMagasin/manage/welcome">Gérer Magasin en
+                                ligne</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageTravel" and tab != 'manage' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminProfile/manageTravel/manage/welcome">Gérer Offres
+                                Touristiques</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageDeals" and tab != 'manage' %}
+                        <li class="nav-item"><a class="nav-link" href="/adminProfile/manageDeals/manage/welcome">Gérer
+                            Annonces immobiliéres</a>
+                        </li>
+                    {% endif %}
+                    <!--  tabulation de consultation  -->
+                    {% if categorie == "manageMagasin" %}{% if categories or tab != "manage" %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminProfile/manageMagasin/show/all">Les produits par
+                                catégorie</a>
+                        </li>
+                    {% endif %}
+                        {% if not categories  and tab == "manage" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Les produits par catégorie</a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    {% if categorie == "manageTravel" %}
+                        {% if not hotel and tab == "manage" or  afficheH  == 'non' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Hotels </a>
+                            </li>
+                        {% endif %}
+                        {% if hotel  or afficheH  != 'non' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adminProfile/manageTravel/showHotels/all">Hotels </a>
+                            </li>
+                        {% endif %}
+                        {% if not restaurant and tab == "manage" or afficheR == 'non' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Restaurants </a>
+                            </li>
+                        {% endif %}
+                        {% if restaurant or afficheR != 'non' %}
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="/adminProfile/manageTravel/showRestaurents/all">Restaurents </a>
+                            </li>
+                        {% endif %}
+                        {% if activity  or afficheA != "non" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adminProfile/manageTravel/showActivities/all">Activités
+                                    touristiques </a>
+                            </li>
+                        {% endif %}
+                        {% if not activity  and tab == "manage" or afficheA == 'non' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="">Activités touristiques </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    {% if categorie == "manageDeals" %}
+                        {% if afficheV == "true" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adminProfile/manageDeals/showSales/all">Vente </a>
+                            </li>
+                        {% endif %}
+                        {% if afficheV == "false" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href=""> Vente </a>
+                            </li>
+                        {% endif %}
+                        {% if afficheL == "true" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/adminProfile/manageDeals/showRent/all">Location </a>
+                            </li>
+                        {% endif %}
+                        {% if afficheL == "false" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href=""> Location </a>
+                            </li>
+                        {% endif %}
+                    {% endif %}
+                    <!--  tabulation de tableau de bord général et détaillé   -->
+                    {% if categorie == "manageMagasin" and showKeywordbord != 'oui'  and showKeywordbord != 'non' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminProfile/manageMagasin/tableaubord/welcome">Tableau de
+                                bord</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageMagasin"  and showKeywordbord == 'non' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Tableau de bord</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageMagasin" and showKeywordbord == 'oui' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'showBord' categorie 'tableaubord' keyword 'oui' %}">Tableau
+                                de
+                                bord</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageTravel" and showKeywordbord != 'oui' and tab !=  "showRestaurents" and tab !=  "showActivities" and tab != "showHotels" and showKeywordbord != 'non' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adminProfile/manageTravel/tableaubord/welcome">Tableau de
+                                bord</a>
+                        </li>{% endif %}
+                    {% if categorie == "manageTravel" and showKeywordbord == 'oui' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'showBord' categorie 'tableaubord' keyword 'oui' %}">Tableau
+                                de
+                                bord</a>
+                        </li>
+                    {% endif %}
+                    {% if categorie == "manageTravel" and showKeywordbord == 'non' and tab == 'manage' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="">Tableau de bord</a>
+                        </li>{% endif %}
+                </ul>
+            </div>
+            <!--  tabulation de consultation  -->
+            {% block content %}
+                <!--  all liste d'éléments produits, offres touristiques , annonces immpbliéres  -->
+                {% if  not all %}
+                    {% if   tab == "show" %}
+                        <p>Ooups!! Pas de produits</p>
+                    {% endif %}
+                    {% if   tab == "showHotels" %}
+                        <p>Ooups!! Pas d'hotels</p>
+                    {% endif %}
+                    {% if   tab == "showRestaurents" %}
+                        <p>Ooups!! Pas de Restaurants</p>
+                    {% endif %}
+                    {% if   tab == "showActivities" %}
+                        <p>Ooups!! Pas d'attraction</p>
+                    {% endif %}
+                {% endif %}
+                {% if  maison %}
+                    <div class="card pd-10 pd-sm-10 mg-t-10">
+                        <h6 class="card-body-title">Les Maisons disponibles: </h6>
+                        <p class="mg-b-20 mg-sm-b-30">
+                            La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                            existent en ce moment là dans les sites officiels des vendeurs.
+                        </p>
+                        <div class="row">
+                            <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                            {% for o in maison %}
+                                <div class="col-sm">
+                                    <a style="color: white"
+                                       href="{% url  'showDetails1' categorie tab 'all' 'maison' o.name '#' %}">
+                                        <div class="card rounded-0" style="margin-bottom: 8%">
+                                            <div class="card-header card-header-default bg-teal">
+                                                <a style="color: white"
+                                                   href="{% url  'showDetails1' categorie tab 'all' 'maison' o.name '#' %}">{{ o.name }}
+                                                </a>
+                                            </div>
+                                            <div class="card-body bg-gray-200">
+                                                <!--  l'image principlae -->
+                                                {% if  o.imageP is not None %}
+                                                    <img src="{{ o.imageP }}" width="250px" height="150px">
+                                                {% else %}
+                                                    <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                         width="250px" height="150px">
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-footer bg-gray-400">
+                                                {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                                {{ o.place }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                {% endif %}
+
+                {% if  appartement %}
+                    <div class="card pd-10 pd-sm-10 mg-t-10">
+                        <h6 class="card-body-title">Les appartements disponibles: </h6>
+                        <p class="mg-b-20 mg-sm-b-30">
+                            La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                            existent en ce moment là dans les sites officiels des vendeurs.
+                        </p>
+                        <div class="row">
+                            <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                            {% for o in appartement %}
+                                <div class="col-sm">
+                                    <a style="color: white"
+                                       href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">
+                                        <div class="card rounded-0" style="margin-bottom: 8%">
+                                            <div class="card-header card-header-default bg-teal">
+                                                <a style="color: white"
+                                                   href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">{{ o.name }}</a>
+                                            </div>
+                                            <div class="card-body bg-gray-200">
+                                                <!--  l'image principlae -->
+                                                {% if  o.imageP is not None %}
+                                                    <img src="{{ o.imageP }}" width="250px" height="150px">
+                                                {% else %}
+                                                    <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                         width="250px" height="150px">
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-footer bg-gray-400">
+                                                {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                                {{ o.place }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                {% endif %}
+
+
+
+
+
+                {% if  terrain %}
+                    <div class="card pd-10 pd-sm-10 mg-t-10">
+                        <h6 class="card-body-title">Les terrains disponibles: </h6>
+                        <p class="mg-b-20 mg-sm-b-30">
+                            La mise à jour des annones est automatique, soyez sur que les arrticles ci-dessus
+                            existent en ce moment là dans les sites officiels des vendeurs.
+                        </p>
+                        <div class="row">
+                            <!--  binesba lil site d'annonces immobliéres l'affichage un peu spéciale 5ater t9oulou chowa type de bien ili bich taffichi w chonowa alouer ou à vendre -->
+                            {% for o in terrains %}
+                                <div class="col-sm">
+                                    <a style="color: white"
+                                       href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">
+                                        <div class="card rounded-0" style="margin-bottom: 8%">
+                                            <div class="card-header card-header-default bg-teal">
+                                                <a style="color: white"
+                                                   href="{% url  'showDetails1' categorie tab 'all' 'appartement' o.name '#' %}">{{ o.name }}</a>
+                                            </div>
+                                            <div class="card-body bg-gray-200">
+                                                <!--  l'image principlae -->
+                                                {% if  o.imageP is not None %}
+                                                    <img src="{{ o.imageP }}" width="250px" height="150px">
+                                                {% else %}
+                                                    <img src="https://docs.plans-constructeurs-maisons.fr/MaisonsFranceConfort/2578537/la-maison-plain-pied.jpg"
+                                                         width="250px" height="150px">
+                                                {% endif %}
+                                            </div>
+                                            <div class="card-footer bg-gray-400">
+                                                {% if o.price    is not None %} {{ o.price }} {% endif %},
+                                                {{ o.place }}
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    </div>
+                {% endif %}
+
+                <!--  athéya il affichage 5ssa bil les produits et les offres touristiques -->
+                <div class="card pd-10 pd-sm-10 mg-t-10">
+                    <h6 class="card-body-title">Les résultats: </h6>
+                    <p class="mg-b-20 mg-sm-b-30">
+                        La mise à jour des annonces est automatique, soyez sur que les articles extractés
+                        existent en ce moment là dans les sites officiels des vendeurs de service.
+                    </p>
+                    <div class="row">
+                        {% for o in all %}
+                            <div class="col-lg-4" style="color: white">
+                                <div class="card rounded-0" style="margin-bottom: 8%">
+                                    <div class="card-header card-header-default bg-teal">
+                                        <a style="color: white"
+                                           href="{% url 'showDetails' categorie tab keyword o.name '#' %}">{{ o.name | étoile }}
+                                        </a>
+                                    </div>
+                                    <div class="card-body bg-gray-0">
+                                        <div class="col"></div>
+                                        {% if tab == "show" %}
+                                            <div class="col-auto">
+                                                <img src="{{ o.imageP }}" width="100px" height="100px">
+                                            </div>
+                                            <div class="col" style="color: black">
+                                                <a class="btn btn-warning pd-y-13 pd-x-20 bd-0 mg-md-l-10 mg-t-10 mg-md-t-0"
+                                                   href="{% url 'showDetails' categorie tab keyword o.name '#' %}">Détails</a>
+                                            </div>
+                                        {% endif %}
+                                        {% if categorie == "manageTravel" or  categorie == "manageDeals" %}
+                                            <img src="{{ o.imageP }}" width="300px" height="200px">
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-footer" style="background-color: white">
+                                        <table class="table table-hover table-bordered mg-b-0"
+                                               style="margin-bottom: 0px">
+                                            <thead>
+                                            <tr>
+                                                <!--  b9yet les informations ili bich yothorou fil liste selou type d'élement -->
+                                                {% if tab == "show" %}
+                                                    <td>
+                                                        <i class="icon ion-pinpoint"></i> {{ o.price }} TND
+                                                    </td>
+                                                    <td>
+                                                        <i class="icon ion-pie-graph"></i> {{ o.promotion }}%
+                                                    </td>
+                                                    <td style="color: darkgoldenrod">
+                                                        <i class="icon ion-star"></i> {{ o.note }}
+                                                    </td>
+                                                {% endif %}
+                                                {% if tab == "showHotels" %}
+                                                    <td>
+                                                        <i class="icon ion-pinpoint"></i> {{ o.place | to | to1 }}
+                                                    </td>
+                                                    <td>
+                                                        <i class="icon ion-pie-graph"></i> {{ o.mention | to }}
+                                                    </td>
+                                                    <td style="color: darkgoldenrod">
+                                                        <i class="icon ion-star"></i> {{ o.note }}
+                                                    </td>
+                                                {% endif %}
+                                                {% if tab == "showRestaurents" %}
+                                                    <td>
+                                                        <i class="icon ion-pinpoint"></i> {{ o.adresse | to | to1 }}
+                                                    </td>
+                                                    <td>
+                                                        <i class="icon ion-pie-graph"></i> {{ o.téléphone }}
+                                                    </td>
+                                                    <td style="color: darkgoldenrod">
+                                                        <i class="icon ion-star"></i> {{ o.note }}
+                                                    </td>
+                                                {% endif %}
+                                                {% if tab == "showActivities" %}
+                                                    <td>
+                                                        <i class="icon ion-pinpoint"></i> {{ o.place | to | to1 }}
+                                                    </td>
+                                                    <td>
+                                                        <i class="icon ion-pie-graph"></i> {{ o.type }}
+                                                    </td>
+                                                    <td style="color: darkgoldenrod">
+                                                        <i class="icon ion-star"></i> {{ o.note }}
+                                                    </td>
+                                                {% endif %}
+                                                {% if categorie == "manageDeals" %}
+                                                    <td>
+                                                        <i class="icon ion-pinpoint"></i> {{ o.place }}
+                                                    </td>
+                                                    {% if o.price    is not None %}
+                                                        <td>
+                                                            <i class="icon ion-pie-graph"></i> {{ o.price }}
+                                                        </td>
+                                                    {% endif %}
+                                                {% endif %}
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- tabulation de gestion  -->
+                {% if categorie == "manageMagasin" and tab == "manage" %}
+                    <div class="card pd-20 pd-sm-40 bg-gray-300">
+                        <h6 class="card-body-title">Ajout de nouveaux produits</h6>
+                        <form method="POST" action="{% url 'manage' 'manageMagasin' 'manage' %}">
+                            {% csrf_token %}
+                            <p><label for="categorieParse"><b>Catégorie:</b> </label> <input class="form-control"
+                                                                                             style="width:50%"
+                                                                                             id="categorieParse"
+                                                                                             type="text"
+                                                                                             name="categorieParse"
+                                                                                             maxlength="100"
+                                                                                             onblur="verif('categorie')"
+                                                                                             required/></p>
+                            <p><input class="btn btn-teal" type="submit" value="Valider"/></p>
+                        </form>
+                    </div>
+                {% endif %}
+
+
+
+
+                {% if categorie == "manageTravel" and tab == "manage" %}
+                    <ul class="nav nav-tabs">
+                        <li><a href="{% url redirection1 'manageTravel' 'manage' 'hot' %}">Hotels</a></li>
+                        <li><a href="{% url redirection1 'manageTravel' 'manage' 'res' %}">Restaurants</a></li>
+                        <li><a href="{% url redirection1 'manageTravel' 'manage' 'act' %}">Activités</a></li>
+                    </ul>
+                    {% if afficheTab == "hot" %}
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h3>Ajout de nouveaux hotels</h3>
+                            <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                {% csrf_token %}
+                                <p><label for="hotelParse"><b>Ville hotels:</b> </label> <input class="form-control"
+                                                                                                style="width:50%"
+                                                                                                id="hotelParse"
+                                                                                                type="text"
+                                                                                                name="hotelParse"
+                                                                                                maxlength="100" required
+                                                                                                onblur="verif('hotel')"/>
+                                </p>
+                                <p><input class="btn btn-teal" type="submit" value="Valider"/></p>
+                            </form>
+                        </div>
+                    {% endif %}
+                    {% if afficheTab == "res" %}
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h3>Ajout de nouveaux restaurants</h3>
+                            <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                {% csrf_token %}
+                                <p><label for="restaurentParse"> <b>Ville restaurant:</b> </label> <input
+                                        class="form-control"
+                                        style=" width:50%"
+                                        id="restaurentParse"
+                                        type="text"
+                                        name="restaurentParse"
+                                        maxlength="100"
+                                        required
+                                        onblur="verif('restaurent')"/>
+                                </p>
+                                <p><input class="btn btn-teal" type="submit" value="Valider"/></p>
+                            </form>
+                        </div>
+                    {% endif %}
+                    {% if afficheTab == "act" %}
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h3>Ajout de nouveaux activités touristiques</h3>
+                            <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                {% csrf_token %}
+                                <p><label for="attractionParse"><b> Ville: </b></label> <input class="form-control"
+                                                                                               style="width:50%"
+                                                                                               id="attractionParse"
+                                                                                               type="text"
+                                                                                               name="attractionParse"
+                                                                                               maxlength="100" required
+                                                                                               onblur="verif('attraction')"/>
+                                </p>
+                                <p><input class="btn btn-teal" type="submit" value="Valider"/></p>
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                {% if categorie == "manageDeals" and  tab == "manage" %}
+                    <div class="card pd-20 pd-sm-40 bg-gray-300">
+                        <h2><b>Ajout de biens immoblier</b></h2>
+                        <form method="POST" action="{% url 'manage' 'manageDeals' 'manage' %}">
+                            {% csrf_token %}
+                            <br>
+                            <p><label for="villeBParse"><b> Ville : </b></label> <input class="form-control"
+                                                                                        style="width:50%;align:center"
+                                                                                        id="villeBParse" type="text"
+                                                                                        name="villeBParse"
+                                                                                        maxlength="100"
+                                                                                        onblur="verif('villeB')"
+                                                                                        required/></p>
+                            <p><label><b>Type de biens :</b></label><select class="form-control"
+                                                                            style="width:50%; height: 40%"
+                                                                            name="typeBien" required>
+                                <option value="maison"> maison</option>
+                                <option value="appartement"> appartement</option>
+                                <option value="bureau">bureau</option>
+                                <option value="terrain">terrain</option>
+                            </select></p>
+                            <label> </label> <input name="type" type="radio" value="vendre"> à vendre : <input
+                                name="type"
+                                type="radio"
+                                value="louer"
+                                required> à louer
+                            :
+                            <p><input class="btn btn-teal" type="submit" value="Valider"/></p>
+                        </form>
+                    </div>
+                {% endif %}
+
+
+                {% if categorie == "manageMagasin" and  tab == "manage" %}
+                    <!--  test itha mafémch élément fil site maythorich il mise à jour wil suppression  -->
+                    {% if categories %}
+                        <br>
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h6 class="card-body-title">Mise à jour de magasin en ligne</h6>
+
+                            <form method="POST" action="{% url 'manage' 'manageMagasin' 'manage' %}">
+                                {% csrf_token %}
+                                <label> <b> Les catégories : </b></label>
+                                <select class="form-control" class="form-control" required name="productCategorieUpdate"
+                                        multiple style="width: 50%">
+
+                                    {% for c in categories %}
+
+                                        <option value="{{ c }}"> {{ c }}</option>
+
+                                    {% endfor %}
+                                </select>
+                                <br>
+                                <p><label for="valeur3"> <b>Fréquence:</b> </label> <input class="form-control"
+                                                                                           id="valeur3"
+                                                                                           type="text" name="valeur"
+                                                                                           maxlength="100" required
+                                                                                           onblur="verifNum('valeur') "
+                                                                                           style="width: 50%"/></p>
+                                <b>Unité de temps :</b><select class="form-control" style="width:50%; height: 40%"
+                                                               name="unite" required>
+                                <option value="minutes">minutes</option>
+                                <option value="heures">heures
+                                <option>
+                                <option value="jours">jours</option>
+                            </select>
+                                <br>
+                                <br>
+                                <input class="btn btn-teal" type="submit">
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+
+
+
+
+
+
+                {% if categorie == "manageTravel" and  tab == "manage" %}
+                    {% if afficheTab == "hot" %}
+                        <!--  test bich taffichi il tabulation d'hotels fi tabulation met3 il gestion  -->
+                        <br>
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h6 class="card-body-title">Mise à jour des Hotels</h6>
+
+                            <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                {% csrf_token %}
+                                <!--  test itha mafémch élément fil site maythorich il mise à jour wil suppression  -->
+                                {% if hotel %}
+                                    <label> <b> Les villes : </b></label>
+                                    <select class="form-control" required name="hotelVillesUpdate" multiple
+                                            style="width: 50%">
+                                        {% for c in hotel %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+                                    </select>
+                                    <br>
+
+                                    <p><label for="valeur4"> <b>Fréquence:</b> </label> <input class="form-control"
+                                                                                               id="valeur4"
+                                                                                               type="text" name="valeur"
+                                                                                               maxlength="100" required
+                                                                                               onblur="verifNum('valeur') "
+                                                                                               style="width: 50%"/>
+                                    </p>
+                                    <b> Unité de temps : </b>
+                                    <select class="form-control" style="width: 50%; height: 40%" name="unite" required>
+                                        <option value="minutes">minutes</option>
+                                        <option value="heures">heures
+                                        <option>
+                                        <option value="jours">jours</option>
+                                    </select>
+                                    <br>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                    </form>
+                                    </form>
+                                    </div>
+                                {% endif %}
+                    {% endif %}
+
+
+
+
+                    {% if afficheTab == "res" %}
+                        <!--  test itha mafémch élément fil site maythorich il mise à jour wil suppression  -->
+                        {% if restaurant %}
+                            <br>
+                            <div class="card pd-20 pd-sm-40 bg-gray-300">
+                                <h6 class="card-body-title">Mise à jour des Restaurants</h6>
+                                <form method="POST" action="{% url 'manage'  'manageTravel' 'manage' %}">
+                                    {% csrf_token %}
+                                    <label> <b> Les villes : </b></label>
+                                    <select style="width: 50%" class="form-control" required name="resVillesUpdate"
+                                            multiple>
+                                        {% for c in restaurant %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+
+                                    </select>
+                                    <br>
+                                    <p><label for="valeur"> Fréquence: </label> <input class="form-control"
+                                                                                       style="width: 50%"
+                                                                                       id="valeur" type="text"
+                                                                                       name="valeur"
+                                                                                       maxlength="100" required
+                                                                                       onblur="verifNum('valeur') "/>
+                                    </p>
+                                    <b>
+                                        Unité de temps :
+                                    </b>
+                                    <select name="unite" required style="width: 50%; height: 40%" class="form-control">
+                                        <option value="minutes">minutes</option>
+                                        <option value="heures">heures
+                                        <option>
+                                        <option value="jours">jours</option>
+                                    </select>
+                                    <br>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+
+
+
+
+                    {% if afficheTab == "act" %}
+                        {% if activity %}
+                            <br>
+                            <div class="card pd-20 pd-sm-40 bg-gray-300">
+                                <h6 class="card-body-title">Mise à jour des activités touristiques</h6>
+                                <form method="POST" action="{% url 'manage'  'manageTravel' 'manage' %}">
+                                    {% csrf_token %}
+                                    <select style="width: 50%" class="form-control" required name="attVillesUpdate"
+                                            multiple>
+                                        {% for c in activity %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+
+                                    </select>
+                                    <br>
+                                    <p><label for="valeur1"> <b>Fréquence:</b> </label> <input class="form-control"
+                                                                                               style="width: 50%"
+                                                                                               id="valeur1"
+                                                                                               type="text" name="valeur"
+                                                                                               maxlength="100" required
+                                                                                               onblur="verifNum('valeur') "/>
+                                    </p>
+                                    <b> Unité de temps : </b>
+                                    <select class="form-control" style="width: 50%; height: 40%" name="unite" required>
+                                        <option value="minutes">minutes</option>
+                                        <option value="heures">heures
+                                        <option>
+                                        <option value="jours">jours</option>
+                                    </select>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+
+
+
+                {% if categorie == "manageDeals" and tab == "manage" %}
+                    {% if afficheL == "true"  or affciheV == "true" %}
+                        <br>
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h6 class="card-body-title">Mise à jour de site d'annonces immobliéres</h6>
+                            <form method="POST" action="{% url 'manage' 'manageDeals' 'manage' %}">
+                                {% csrf_token %}
+                                <select style="width: 50%" class="form-control" required name="VillesUpdate" multiple>
+                                    <option value="tunis,maison_a_louer">Tunis,maison à louer</option>
+                                    <option value="tunis,maison_a_vendre">Tunis,maison à vendre</option>
+                                </select>
+                                <br>
+                                <p><label for="valeur2"> <b>Fréquence:</b> </label> <input class="form-control"
+                                                                                           style="width: 50%"
+                                                                                           id="valeur2"
+                                                                                           type="text" name="valeur"
+                                                                                           maxlength="100" required
+                                                                                           onblur="verifNum('valeur') "/>
+                                </p>
+                                <b> Unité de temps : </b><select style="width: 50%; height: 40%" class="form-control"
+                                                                 name="unite" required>
+                                <option value="minutes">minutes</option>
+                                <option value="heures">heures
+                                <option>
+                                <option value="jours">jours</option>
+                            </select>
+                                <br>
+                                <br>
+                                <input class="btn btn-teal" type="submit">
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+
+
+                {% if categorie == "manageMagasin" and tab == "manage" %}
+                    {% if categories %}
+                        <br>
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h6 class="card-body-title">Suppresion de produits</h6>
+
+                            <form method="POST" action="{% url 'manage' 'manageMagasin' 'manage' %}">
+                                {% csrf_token %}
+                                <label> <b>Les catégories : </b></label>
+                                <select style="width: 50%; height: 40%" class="form-control" required name="categorie">
+                                    {% for c in categories %}
+
+                                        <option value="{{ c }}"> {{ c }}</option>
+
+                                    {% endfor %}
+
+                                </select>
+                                <br>
+                                </select>
+                                <br>
+                                <input class="btn btn-teal" type="submit">
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+
+                {% if categorie == "manageTravel" and tab == "manage" %}
+                    {% if afficheTab == "hot" %}
+                        {% if hotel %}
+                            <br>
+                            <div class="card pd-20 pd-sm-40 bg-gray-300">
+                                <h6 class="card-body-title">SUPPRESION des hotels</h6>
+                                <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                    {% csrf_token %}
+                                    <select style="width: 50%; height: 40%" class="form-control" required name="villeH">
+                                        {% for c in hotel %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+                                    </select>
+                                    <br>
+                                    </select>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if afficheTab == "res" %}
+                        {% if restaurant %}
+                            <br>
+                            <div class="card pd-20 pd-sm-40 bg-gray-300">
+                                <h6 class="card-body-title">SUPPRESION des restaurants</h6>
+                                <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                    {% csrf_token %}
+                                    <select style="width: 50%; height: 40%" class="form-control" required name="villeR">
+                                        {% for c in restaurant %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+                                    </select>
+                                    <br>
+                                    </select>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                    {% if afficheTab == "act" %}
+                        {% if activity %}
+                            <br>
+                            <div class="card pd-20 pd-sm-40 bg-gray-300">
+                                <h6 class="card-body-title">SUPPRESION d'activités Touristiques</h6>
+                                <form method="POST" action="{% url 'manage' 'manageTravel' 'manage' %}">
+                                    {% csrf_token %}
+                                    <select style="width: 50%; height: 40%" class="form-control" required name="villeA">
+                                        {% for c in activity %}
+
+                                            <option value="{{ c }}"> {{ c }}</option>
+
+                                        {% endfor %}
+
+                                    </select>
+                                    <br>
+                                    </select>
+                                    <br>
+                                    <input class="btn btn-teal" type="submit">
+                                </form>
+                            </div>
+                        {% endif %}
+                    {% endif %}
+                {% endif %}
+
+                {% if categorie == "manageDeals" and tab == "manage" %}
+                    {% if afficheL == "true"  or affciheV == "true" %}
+                        <br>
+                        <div class="card pd-20 pd-sm-40 bg-gray-300">
+                            <h6 class="card-body-title">SUPPRESION des biens immobiliers</h6>
+                            <form method="POST" action="{% url 'manage' 'manageDeals' 'manage' %}">
+                                {% csrf_token %}
+                                <label><b>Les villes :</b></label>
+                                <select style="width: 50%; height: 40%" class="form-control" required name="villeBI">
+                                    <option value="tunis">tunis</option>
+
+                                </select>
+                                <br>
+                                </select>
+                                <br>
+                                <input d class="btn btn-teal" type="submit">
+                            </form>
+                        </div>
+                    {% endif %}
+                {% endif %}
+                </div>
+
+
+
+
+
+
+
+            {% endblock %}
+
+{% if  message|length > 0 %}
+
+    <script type="text/javascript">
+
+        var message1 = "{{message }}"
+
+        alert(message1)
+    </script>
+{% endif %}
+<!--  tabulation tableau de bord  -->
+<div class="container">
+{% if  tab == "tableaubord" and showKeywordbord != "oui" %}
+
+
+    <!--  tableau de bord général de 2 sites -->
+    <div class="chart-container" style="position: relative; height:50vh; width:50vw">
+        <h3>Nombre total de produits et d'établissements touristiques</h3>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+                labels: ["produits", "établissements touristiques"],
+                datasets: [{
+                    label: '',
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 = {{ num | safe }}
+
+            e["data"]["datasets"][0]["data"] = e2
+        var myChart = new Chart(ctx, e);
+    </script>
+{% endif %}
+
+{% if categorie == "manageMagasin" and tab == "tableaubord" and showKeywordbord != "oui" %}
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!--  tableau de bord général  de magasin en ligne -->
+    <div class="chart-container" style="position: relative; height:50vh; width:50vw">
+        <h3>Nombre de produits par catégorie</h3>
+        <canvas id="myChart1"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart1').getContext('2d');
+        var e = {
+            type: 'bar',
+            data: {
+
+                datasets: [{
+                    label: 'Nombre de produit par catégorie',
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+        var e1 =
+        {{ categories | safe}}
+        var e2 = {{ numbers | safe }}
+            console.log(e2)
+        e["data"]["labels"] = e1
+        e["data"]["datasets"][0]["data"] = e2
+        var myChart = new Chart(ctx, e);
+    </script>
+{% endif %}
+
+
+{% if categorie == "manageTravel" and tab == "tableaubord"  and  showKeywordbord != 'oui' %}
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="chart-container" style="position: relative; height:50vh; width:50vw">
+
+        <!--  tableau de bord général de site touristiques-->
+        <h3>Nombre total d'hôtels, restaurants et attractions touristiques</h3>
+        <canvas id="myChart2"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart2').getContext('2d');
+        var e = {
+            type: 'doughnut',
+            data: {
+
+                datasets: [{
+                    label: '',
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 = {{ nums | safe }}
+            console.log(e2)
+        var e1 = {{ labels | safe}}
+            e["data"]["labels"] = e1
+        e["data"]["datasets"][0]["data"] = e2
+        var myChart = new Chart(ctx, e);
+    </script>
+
+{% endif %}
+{% if categorie == "manageTravel" and tab == "tableaubord" and showKeywordbord == "oui" %}
+    <!-- charts il b9aw tab3ine tableau de bord spécifique soit  à une catégorie de produit soit à une ville-->
+    <div class="chart-container" style="position: relative; height:45vh; width:45vw">
+        <h3>Nombre d'hôtels, restaurants et attractions touristiques à {{ keyword }} </h3>
+        <canvas id="myChart3"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart3').getContext('2d');
+        var e = {
+            type: 'doughnut',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 = {{ nums | safe }}
+            console.log(e2)
+        var e1 = {{ labels | safe}}
+
+            e["data"]["labels"] = e1
+        e["data"]["datasets"][0]["label"] = "offres touristiques {{ keyword |safe}}"
+        e["data"]["datasets"][0]["data"] = e2
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw">
+        <h3>Les meilleurs hôtels selon la note attribuée</h3>
+        <canvas id="myChart4"></canvas>
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart4').getContext('2d');
+        var e = {
+            type: 'bar',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ top | safe }}
+
+        var e1 = {{ values | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = "les hotels les plus appréciés   à {{keyword}}"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:50vh; width:50vw">
+        <h3>Classification d'hôtels </h3>
+        <canvas id="myChart5"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart5').getContext('2d');
+        var e = {
+            type: 'polarArea',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ etoiles | safe }}
+
+        var e1 = {{ valuese | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = "Nombre d'hotels   à {{keyword}} par étoiles"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw">
+        <h3>Nombre d'hôtels par quartier </h3>
+        <canvas id="myChart6"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart6').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ places | safe }}
+
+        var e1 = {{ valuesp | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = " les hotels  à {{keyword}} par places"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:50vh; width:50vw">
+        <h3>Les meilleurs restaurants selon la note attribuée</h3>
+        <canvas id="myChart7"></canvas>
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart7').getContext('2d');
+        var e = {
+            type: 'bar',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ topr | safe }}
+
+        var e1 = {{ valuesr | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = ""
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw">
+        <h3>Nombre de restaurants par repas fournis</h3>
+        <canvas id="myChart8"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart8').getContext('2d');
+        var e = {
+            type: 'polarArea',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ repas | safe }}
+
+        var e1 = {{ valr | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = " les restaurants   à {{keyword}} par cuisine "
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw">
+        <h3>Nombre de restaurants par Cuisines et plats</h3>
+        <canvas id="myChart9"></canvas>
+
+
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart9').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ cuisine | safe }}
+
+        var e1 = {{ valc | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = " les hotels  à {{keyword}} par places"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw">
+        <h3>Les meilleurs attractions touristiques selon la note attribuée</h3>
+        <canvas id="myChart10"></canvas>
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart10').getContext('2d');
+        var e = {
+            type: 'bar',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ topa| safe }}
+
+        var e1 = {{ valuesa | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = ""
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:50vh; width:50vw">
+        <h3>Le nombre d'attractions touristiques par type</h3>
+        <canvas id="myChart11"></canvas>
+
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart11').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ type | safe }}
+
+        var e1 = {{ valT | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = " les attractions touristiques par type   à {{keyword}} par cuisine "
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:45vh; width:45vw">
+        <h3>Le nombre d'attractions tourisitques par durée conseillée de visite</h3>
+        <canvas id="myChart12"></canvas>
+
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart12').getContext('2d');
+        var e = {
+            type: 'polarArea',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ duree | safe }}
+
+        var e1 = {{ vald | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = " les hotels  à {{keyword}} par durée conseillée"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+
+
+    </div>
+{% endif %}
+{% if categorie == "manageMagasin" and tab == "tableaubord" and showKeywordbord == "oui" %}
+
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:45vh; width:45vw;margin-left:80px">
+        <h3>Les meilleurs produits selon la note attribuée</h3>
+        <canvas id="myChart13"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart13').getContext('2d');
+        var e = {
+            type: 'doughnut',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ top | safe }}
+
+        var e1 = {{ values | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = ""
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:50vh; width:50vw;margin-left:80px">
+        <h3>Les produits les plus chers en TND</h3>
+        <canvas id="myChart14"></canvas>
+    </div>
+    <script type="text/javascript">
+
+        var ctx = document.getElementById('myChart14').getContext('2d');
+        var e = {
+            type: 'polarArea',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ priceH | safe }}
+
+        var e1 = {{ valH| safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = "les hotels les plus appréciés   à {{keyword}}"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:55vh; width:55vw;margin-left:80px">
+        <h3>Les produits les moins chers en TND</h3>
+        <canvas id="myChart15"></canvas>
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart15').getContext('2d');
+        var e = {
+            type: 'polarArea',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ priceC | safe }}
+
+        var e1 = {{ valC | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = "Nombre d'hotels   à {{keyword}} par étoiles"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:45vh; width:45vw;margin-left:80px">
+        <h3>Les taux de promotion les plus élévés en %</h3>
+        <canvas id="myChart16"></canvas>
+
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart16').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ promotion | safe }}
+
+        var e1 = {{ valp | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = ""
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div style="position: relative; height:45vh; width:45vw;margin-left:80px;">
+        <h3>Nombre de produits par subcatégorie</h3>
+        <canvas id="myChart17"></canvas>
+
+    </div>
+    <script type="text/javascript">
+        var ctx = document.getElementById('myChart17').getContext('2d');
+        var e = {
+            type: 'pie',
+            data: {
+
+                datasets: [{
+
+
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        }
+
+        var e2 =
+        {{ categories1 | safe }}
+
+        var e1 = {{ valc | safe}}
+            e["data"]["labels"] = e2
+        console.log(e1)
+        e["data"]["datasets"][0]["label"] = "Nombre de produits par Subcatégorie"
+        e["data"]["datasets"][0]["data"] = e1
+        var myChart = new Chart(ctx, e);
+    </script>
+
+{% endif %}
+</div>
+
+<script type="text/javascript">
+    var x = {{alert | safe}}
+        console.log(x)
+    $(function () {
+        {% if alert %}
+
+            alert('{{alert}}');
+        {% endif %}
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        'use strict';
+
+        $('#wizard1').steps({
+            headerTag: 'h3',
+            bodyTag: 'section',
+            autoFocus: true,
+            titleTemplate: '<span class="number">#index#</span> <span class="title">#title#</span>'
+        });
+    });
+    ;
+</script>
+</div>
+<script src="{% static '/lib/jquery/jquery.js' %}"></script>
+<script src="{% static '/lib/highlightjs/highlight.pack.js' %}"></script>
+<script src="{% static '/lib/jquery.steps/jquery.steps.js' %}"></script>
+<script src="{% static '/lib/parsleyjs/parsley.js' %}"></script>
+
+<script src="{% static '//lib/popper.js/popper.js' %}"></script>
+<script src="{% static '//lib/bootstrap/bootstrap.js' %}"></script>
+<script src="{% static '//lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js' %}"></script>
+<script src="{% static '//lib/jquery-toggles/toggles.min.js' %}"></script>
+<script src="{% static '//lib/d3/d3.js' %}"></script>
+<script src="{% static '//lib/rickshaw/rickshaw.min.js' %}"></script>
+<script src="http://maps.google.com/maps/api/js?key=AIzaSyAEt_DBLTknLexNbTVwbXyq2HSf2UbRBU8"></script>
+<script src="{% static '//lib/gmaps/gmaps.js' %}"></script>
+<script src="{% static '//lib/Flot/jquery.flot.js' %}"></script>
+<script src="{% static '//lib/Flot/jquery.flot.pie.js' %}"></script>
+<script src="{% static '//lib/Flot/jquery.flot.resize.js' %}"></script>
+<script src="{% static '//lib/flot-spline/jquery.flot.spline.js' %}"></script>
+
+<script src="{% static '//js/amanda.js' %}"></script>
+<script src="{% static '//js/ResizeSensor.js' %}"></script>
+<script src="{% static '//js/dashboard.js' %}"></script>
+</div>
+</body>
+</html>

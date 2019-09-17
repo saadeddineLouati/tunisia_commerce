@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+    </script>
+    <style>input,
+    textarea {
+        border: 1px solid #eeeeee;
+        box-sizing: border-box;
+        margin: 0;
+        outline: none;
+        padding: 10px;
+    }
+    input[type="button"] {
+        -webkit-appearance: button;
+        cursor: pointer;
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
+    .input-group {
+        clear: both;
+        margin: 15px 0;
+        position: relative;
+    }
+    .input-group input[type='button'] {
+        background-color: #eeeeee;
+        min-width: 38px;
+        width: auto;
+        transition: all 300ms ease;
+    }
+    .input-group .button-minus,
+    .input-group .button-plus {
+        font-weight: bold;
+        height: 38px;
+        padding: 0;
+        width: 38px;
+        position: relative;
+    }
+    .input-group .quantity-field {
+        position: relative;
+        height: 38px;
+        left: -6px;
+        text-align: center;
+        width: 62px;
+        display: inline-block;
+        font-size: 13px;
+        margin: 0 0 5px;
+        resize: vertical;
+    }
+    .button-plus {
+        left: -13px;
+    }
+    input[type="number"] {
+        -moz-appearance: textfield;
+        -webkit-appearance: none;
+    }
+    </style>
+</head>
+<body>
+{% load app_tags %}
+<!--  inclu fi page admin thor ken fil tabulation met3 consultation liste partie gauche béch tnjém tconsulti les éléments spécifique à une catégorie ville -->
+<ul class="nav am-side left-menu">
+    {% for o in productCategorie %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url '' categorie tab o %}"> {{ o }}</a>
+        </li>
+        <br>
+    {% endfor %}
+</ul>
+<!--  site d'annonces immobliéres mafichouch affichage filtré -->
+{% if categorie != "manageDeals" %}
+    <!--  formulaire pour la consulation filtré -->
+    <nav class="navbar navbar" >
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <b>Filtrer par :</b>
+            </div>
+            <br>
+            <br>
+            <form method="POST" action="{% url 'showFilter' categorie 'filter' tab keyword %}">
+                {% csrf_token %}
+                <ul class="nav navbar-nav">
+                    <!--  formulaire pour la consulation filtré  magasin-->
+                    {% if tab == "show" %}
+                        <li class="nav-item"><b> Étoiles </b>
+                            <br>
+                        </li>
+                        <li class="nav-item"><b> Catégorie : </b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                {% for c in cat %}
+                                    <li class="nav-item" class="form-control">
+                                        <input type="checkbox" name="catégorie" value="{{ c }}"> {{ c | to }}
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item"><b> prix TTC : </b>
+                            <br>
+                            <b>min</b>
+                            <div id="input_div">
+                                <input type="button" value="-" onclick="minus()">
+                                <input type="text" size="5" value="0" name="count" id="count">
+                                <input type="button" value="+" onclick="plus()">
+                                <br>
+                                <b>max</b>
+                                <br>
+                                <input type="button" value="-" onclick="minus1()">
+                                <input type="text" size="5" value="0" name="count1" id="count1">
+                                <input type="button" value="+" onclick="plus1()">
+                            </div>
+                        </li>
+                    {% endif %}
+                    <!--  formulaire pour la consulation hotels -->
+                    {% if tab == "showHotels" %}
+                        <li class="nav-item"><b> Étoiles </b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item" class="form-control">
+                                    <input type="checkbox" name="étoile" value="1 étoile"> 1 étoile
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="étoile" value="2 étoiles"> 2 étoiles
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="étoile" value="3 étoiles"> 3 étoiles
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="étoile" value="4 étoiles"> 4 étoiles
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="étoile" value="5 étoiles"> 5 étoiles
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="étoile" value="non classé"> non classé
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Type d'établissement :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="type" value="Hôtels"> Hôtels
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="type" value="Appartements"> Appartements
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Note des commentaires :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="Fabuleux : 9+"> Fabuleux : 9+
+                                </li>
+                                <br>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="Superbe : 8,5+"> Superbe : 8,5+
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="Très_bien : 8+"> Très bien : 8+
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="Bien : 7+"> Bien : 7+
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="Agréable : 6+"> Agréable : 6+
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Équipements :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Chambres familiales">Chambres
+                                    familiales
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Chambres non-fumeurs"> Chambres
+                                    non-fumeurs
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Animaux domestiques admis"> Animaux
+                                    domestiques admis
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Réception ouverte 24h/24"> Réception
+                                    ouverte 24h/24
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Connexion Wi-Fi gratuite">
+                                    Connexion Wi-Fi gratuite
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement"
+                                           value="Équipements pour les personnes handicapées"> Équipements pour les
+                                    personnes handicapées
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="équipement" value="Chauffage"> Chauffage
+                                </li>
+                                <br>
+                                <li class="nav-item" >
+                                    <input type="checkbox" name="équipement" value="Parking"> Parking
+                                </li>
+                                <br>
+                                <li class="nav-item" >
+                                    <input type="checkbox" name="équipement" value="Bar"> Bar
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Quartiers / Arrondissements :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                {% for r in arround %}
+                                    <li class="nav-item">
+                                        <input type="checkbox" name="Arrondissements"
+                                               value="{{ r }}"> {{ r | to | to1 }}
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!--  formulaire pour la consulation filtré attractions -->
+                    {% if tab == "showActivities" %}
+                        <li class="nav-item">
+                            <b>Durée conseillée :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="durée" value="_Moins_d__une_heure"> Moins d'une heure
+                                </li>
+                                <br>
+
+                                <li class="nav-item">
+                                    <input type="checkbox" name="durée" value="_1_à_2_heures"> 1 à 2 heures
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="durée" value="_2_à_3_heures"> 2 à 3 heures
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="durée" value="_3_à_4_heures"> 3 à 4 heures
+                                </li>
+                            </ul>
+                        </li>
+                        <li  class="nav-item">
+                            <b>Note :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="4,0">4,0
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="4,5"> 4,5
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="note" value="5,0"> 5,0
+                                </li>
+                                <br>
+                            </ul>
+                        </li>
+                        <li  class="nav-item">
+                            <b> Quartiers / Arrondissements :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                {% for r in arround %}
+                                    <li class="nav-item">
+                                        <input type="checkbox" name="Arrondissements"
+                                               value="{{ r }}"> {{ r | to | to1 }}
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Type d'attraction :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                {% for r in type %}
+                                    <li class="nav-item">
+                                        <input type="checkbox" name="type" value="{{ r }}"> {{ r  | to | to1 }}
+
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <!--  formulaire pour la consulation filtré restaurants -->
+                    {% if tab == "showRestaurents" %}
+                        <li class="nav-item">
+                            <b>Cuisine :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Française"> Française
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Italienne"> Italienne
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Européenne"> Européenne
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Méditerranéenne"> Méditerranéenne
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Moyen-Orient"> Moyen-Orient
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Turque"> Turque
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Chinoise"> Chinoise
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Japonaise"> Japonaise
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Asiatique"> Asiatique
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Libanaise">Libanaise
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Arabe"> Arabe
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="cuisine" value="Mexicaine"> Mexicaine
+
+                                </li>
+                                <br>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b>Repas :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="repas" value="Petit déjeuner">Petit déjeuner
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="repas" value="Brunch"> Brunch
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="repas" value="Déjeuner"> Déjeuner
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="repas" value="Dîner"> Dîner
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b>Restrictions alimentaires :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                <li class="nav-item">
+                                    <input type="checkbox" name="régime" value="Halal">Halal
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="régime" value="Végétariens bienvenus"> Végétariens
+                                    bienvenus
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="régime" value="Choix végétaliens"> Choix végétaliens
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="régime" value="Casher"> Casher
+                                </li>
+                                <br>
+                                <li class="nav-item">
+                                    <input type="checkbox" name="régime" value="Plats sans gluten"> Plats sans gluten
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <b> Quartiers / Arrondissements :</b>
+                            <br>
+                            <ul class="nav navbar-nav">
+                                {% for r in arround %}
+                                    <li class="nav-item">
+                                        <input type="checkbox" name="Arrondissements"
+                                               value="{{ r }}"> {{ r | to | to1 }}
+                                    </li>
+                                    <br>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+                <br>
+                <button type="submit" class="btn btn-primary" >filtrer</button>
+            </form>
+        </div>
+    </nav>
+{% endif %}
+</body>
+</html>
